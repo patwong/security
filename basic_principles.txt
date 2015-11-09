@@ -1,0 +1,56 @@
+security specialists
+1. unauthorized information release
+2. unauthorized information modification
+3. unauthorized denial of use
+
+functional levels of information protection
+- many different designs proposed and mechanisms implemented for protecting information in computer systems
+- differences among protection schemes
+	- eg different functional properties
+		kinds of access control that can be expressed naturally and enforced
+		convenient to divide protection schemes according to their functional properties
+	
+unprotected systems: some systems have no provision for preventing a determined user from having access to every piece of information in the system
+- 
+
+all-or-nothing
+- isolation of users, sometimes moderated by total sharing of some piece of information
+- if only isolation isp rovided, user of such a system might just as well be using his own private computer, as far as protection and sharing of information are concerned. more commonly. usch systems also have public libraries to which every user may have access
+- most of first generation of commercial timesharing systems provide a protection scheme with this level of function
+	e.x. include dartmouth time shar
+
+controlled sharing
+- significantly more complex machinery is required to control explicitly who may access each data item sotred in the system
+e.g. such a system might provide each file with a list of authorized users and allow an owner to distinguish several common patterns of use, such as reading, writing, or executing the contents of the file as a program
+
+user-programmed sharing controls
+- may want to restrict access to a file in a way not provided in the standard facilities for controlled sharing
+- e.g. permit access only on weekdays at x time to y time
+p general escape: provide user-defined protected objects and subsystems
+protected subsystem: collection of programs and data with the property that only the programs of the subsystem have direct access to the data 
+- access to programs limited to calling specirfied entry points
+- thus programs of subsystem completely control the operations performed on the data
+- by constructing a protected subsystem, user can develop an yprogrammable form of access control to the objects he creates
+
+strings on information
+- foregoing three levels have been concerned with establishing conditions for the release of information to an executing program
+- fourth level of capability is to maintain some control over the user of the information even after it has been released
+
+dynamics of use
+- how one establishes and changes the specification of who may access what
+- the need to change access authorization dynamically and the need for such changes to be requested by executing programs introduces much complexity into protection systems
+- for a given functional level, most existingp rotection systems differ primarily in the way they handle protection dynamics
+-
+
+design principles
+- whatever the level of functionality provided, the usefulness of a set of protection mechanisms depends upon the ability of a system to prevent security violations
+- in practice, producing a system at any level of functionality (except level one) that actually does prevent all such uauthorized acts has proved to be extremely difficult
+sophisitcated users of most systems are aware of at least one way to crash the system, denying other users authorized access to stored information
+
+
+
+
+-----
+design principles - imperfect
+work factor
+compromise recording

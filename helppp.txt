@@ -1,0 +1,25 @@
+"%50u %n %50u %n %50u %n %50u %n"
+
+
+
+
+
+0xffbfcccc : AAAA 0xffbfde0c AAAA 0xffbfded AAAA 0xffbfdee AAAA 0xffbfdef
+
+                                                            1094795585
+
+
+
+
+
+
+
+
+
+
+
+0xffbfdb90
+ffbfdfd6
+
+
+0xffbfde0c :  00000632

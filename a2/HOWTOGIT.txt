@@ -1,0 +1,16 @@
+ON UGSTER
+ scp -r . pn2wong@linux.student.cs.uwaterloo.ca:~/cs458/a2
+
+-> this will copy all files from the ugster environment to student.cs
+
+git init							%only the first time
+git add .							%add all files
+git commit -m "the commit name"		%ver num of commit
+git remote add origin _URLOFREPO	%get the repo url from github
+git remote -v						%checks if url is right
+git push origin master				%pushes it online
+
+
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+git log			%checks the logs

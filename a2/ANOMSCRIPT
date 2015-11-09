@@ -1,0 +1,9 @@
+#!/bin/bash
+
+make clean
+make
+if [ -z "$1" ];	then
+	./ids q1-anomaly.pcap
+else 
+	./ids $1
+fi

@@ -1,0 +1,11 @@
+
+Currently submitted files of pn2wong (assignment 1):
+
+       Size     Time     Name
+-----------+------------+-----------
+      40050 Sep 29 16:40 a1-milestone.pdf
+        946 Sep 29 16:40 sploit1.c
+        924 Sep 29 16:40 sploit2.c
+
+total files: 3
+

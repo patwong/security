@@ -1,4 +1,3 @@
 #!/bin/bash
 
-gcc -Wall -ggdb sploit1.c -o a.sploit1
-cp sploit1.c ../public_html
+gcc -Wall -ggdb sploit1.c -o sploit1

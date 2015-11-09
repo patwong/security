@@ -1,0 +1,107 @@
+#include <iostream>
+#include <pcap.h>
+
+void packet_handler( struct pcap_pkthdr *header, const u_char *pkt_data);
+
+
+typedef struct ip_address{
+	u_char byte1;
+	u_char byte2;
+	u_char byte3;
+	u_char byte4;
+}ip_address;
+
+typedef struct ip_header{
+//	u_char  ver_ihl;        // Version (4 bits) + Internet header length (4 bits)
+//	u_char  tos;            // Type of service 
+//	u_short tlen;           // Total length 
+//	u_short identification; // Identification
+//	u_short flags_fo;       // Flags (3 bits) + Fragment offset (13 bits)
+//	u_char  ttl;            // Time to live
+//	u_char  proto;          // Protocol
+//	u_short crc;            // Header checksum
+	ip_address  saddr;      // Source address
+	ip_address  daddr;      // Destination address
+//	u_int   op_pad;         // Option + Padding
+}ip_header;
+
+/* UDP header*/
+//typedef struct udp_header{
+//	u_short sport;          // Source port
+//	u_short dport;          // Destination port
+//	u_short len;            // Datagram length
+//	u_short crc;            // Checksum
+//}udp_header;
+
+int main(int argc, char* argv[]) {
+		char errbuf[PCAP_ERRBUF_SIZE];
+		pcap_t *peecap;
+		struct pcap_pkthdr pkt;
+		const unsigned char *pkt_ret;
+		int pkt_num = 0;
+		int pkt_sum_size = 0;
+//error checking: if args are given
+//if file is .pcap
+//if valid .pcap
+//other bounds checking?
+		if(argc == 1) {
+			std::cerr << "no arguments passed\n";
+			return 0;
+		}
+		peecap = pcap_open_offline(argv[1],errbuf);
+		if(peecap == NULL) {
+		//	fprintf(stderr, "PCAP ERROR: %s\n", errbuf);
+			std::cerr << "PCAP ERROR: " << errbuf << std::endl;
+			return 0;	
+		}
+		while((pkt_ret = pcap_next(peecap, &pkt)) != NULL) {
+			if(pkt_num == 0) {
+			//	std::cout << "pkt: " << pkt.len << std::endl;
+		//		packet_handler(&pkt, pkt_ret);
+				std::cout << (u_char )(pkt_ret + 26) << std::endl;
+			}
+			pkt_sum_size = pkt_sum_size + pkt.len;
+			pkt_num++;
+		}
+		std::cout << "Analyzed " << pkt_num << " packets, "
+			<< pkt_sum_size << " bytes"
+			<< std::endl;
+
+
+		return 0;
+}
+
+void packet_handler(struct pcap_pkthdr *header, const u_char *pkt_data)
+{
+//	struct tm ltime;
+//	char timestr[16];
+	ip_header *ih;
+//	u_int ip_len;
+//	time_t local_tv_sec;
+	
+	
+	/* retireve the position of the ip header */
+	std::cout << "ip_header pointer: " << sizeof(ip_header *) << ", ip_header: " 
+			<< sizeof(ip_header) << std::endl;
+	std::cout << "u_short: " << sizeof(u_short) << ", u_char: " << sizeof(u_char)
+			<< ", ip_addr: " << sizeof(ip_address) << std::endl;
+	std::cout << "u_int: " << sizeof(u_int) << std::endl;
+//	ih = (ip_header *) (pkt_data + 14); //length of ethernet header
+	ih = (ip_header *) (pkt_data + 14 + 12);
+	/* retireve the position of the udp header */
+//	ip_len = (ih->ver_ihl & 0xf) * 4;
+	
+	/* print ip addresses and udp ports */
+	
+	printf("source: %d.%d.%d.%d -> dest: %d.%d.%d.%d\n",
+	
+	ih->saddr.byte1,
+	ih->saddr.byte2,
+	ih->saddr.byte3,
+	ih->saddr.byte4,
+	ih->daddr.byte1,
+	ih->daddr.byte2,
+	ih->daddr.byte3,	
+	ih->daddr.byte4);
+}
+
